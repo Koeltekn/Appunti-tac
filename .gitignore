@@ -1,3 +1,7 @@
-latex.log
-latex.synctex.gz
+latex.aux
 latex.fdb_latexmk
+latex.fls
+latex.log
+latex.out
+latex.synctex.gz
+latex.toc
