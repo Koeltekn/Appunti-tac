@@ -47,6 +47,8 @@
 \newcommand{\cstar}[1]{\ensuremath{\overline{St}({#1})}}
 \newcommand{\pskel}[2]{\ensuremath{{#1}^{({#2})}}}
 \newcommand{\shrp}[1]{\ensuremath{({#1}_\#)_p}}
+\newcommand{\str}[1]{\ensuremath{({#1}_*)_p}}
+
 \renewcommand\qedsymbol{$\blacksquare$}
 \setcounter{MaxMatrixCols}{20}
 
@@ -10727,6 +10729,7 @@ l'indice 0 e l'indice $n-1$ coincidono, e portano ad avere $\Z^2$. Rispetto ai g
 \]
 che nel gruppi di omologia ridotta corrisponde a 2 componenti connesse
 \chapter{Omomorfismi indotti da mappe simpliciali}
+\section{Omomorfismi sulle p-catene}
 \paragraph{Domanda} Cosa posso dire dell'effetto di una mappa simpliciale rispetto all'omologia simpliciale?
 \begin{definition}[Omomorfismo sulle catene indotto da una mappa simpliciale]
     Sia $f:K\ra L$ una mappa simpliciale, definiamo l'omomorfismo
@@ -10949,7 +10952,7 @@ $f:K\ra L$ definita da
 \begin{proposition}
     Gli omomorfismi indotti \shrp{f} da $C_p(K)$ in $C_p(L)$ commutano con gli operatori bordo, ossia
     \[
-        \partial'_p\circ\shrp{f}=(f_\#)_{p-1}\circ\partial_p\quad\quad\forall p    
+        \partial'_p\circ\shrp{f}=(f_\#)_{p-1}\circ\partial_p\quad\quad\forall p
     \]
 \end{proposition}
 \begin{proof}
@@ -10957,94 +10960,545 @@ $f:K\ra L$ definita da
     Sia $\sigma=[P_0,\dots,P_p]$ e sia $\tau$ il simplesso generato da $f(P_0),\dots,f(P_p)$\\
     \begin{enumerate}
         \item[caso 1)] $dim\ \tau=p$ ($f$ trasferisce la dimensione) ossia
-        \[
-            f(P_0),\dots,f(P_p)\quad\text{distinti}    
-        \]
-        da cui
-        \[
-            \left(\partial'_p\circ\shrp{f}\right)([P_0,\dots,P_p])=\partial'_p([f(P_0),\dots,f(P_p)])=
-        \]
-        \[
-            =\sum_{i=0}^p(-1)^i[f(P_0),\dots,\hat{f(P_i)},\dots,f(P_p)]=\sum_{i=0}^p(-1)^i(f_\#)_{p-1}([P_0,\dots,\hat{P_i},\dots,P_p])=
-        \]
-        \[
-            =(f_\#)_{p-1}\left(\sum_{i=0}^p(-1)^i[P_0,\dots,\hat{P_i},\dots,P_p]\right)=\left((f_\#)_{p-1}\circ\partial_p\right)([P_0,\dots,P_p])    
-        \]
+            \[
+                f(P_0),\dots,f(P_p)\quad\text{distinti}
+            \]
+            da cui
+            \[
+                \left(\partial'_p\circ\shrp{f}\right)([P_0,\dots,P_p])=\partial'_p([f(P_0),\dots,f(P_p)])=
+            \]
+            \[
+                =\sum_{i=0}^p(-1)^i[f(P_0),\dots,\hat{f(P_i)},\dots,f(P_p)]=\sum_{i=0}^p(-1)^i(f_\#)_{p-1}([P_0,\dots,\hat{P_i},\dots,P_p])=
+            \]
+            \[
+                =(f_\#)_{p-1}\left(\sum_{i=0}^p(-1)^i[P_0,\dots,\hat{P_i},\dots,P_p]\right)=\left((f_\#)_{p-1}\circ\partial_p\right)([P_0,\dots,P_p])
+            \]
         \item[caso 2)] $dim\ \tau\leq p-2$
-        \[
-            \shrp{f}([P_0,\dots,P_p])=0\implies\left(\partial'_p\circ\shrp{f}\right)([P_0,\dots,P_p])=0
-        \]
-        \[
-            (f_\#)_{p-1}(\partial_1([P_0,\dots,P_p]))=\sum_{i=0}^p(-1)^i(f_\#)_{p-1}([P_0,\hat{P_i},P_p])=
-        \]
-        da $dim\ \tau\leq p-2$ segue che, per ogni $i$, c'è almeno una ripetizione di vertici immagini di $f$, quindi
-        \[
-            (f_\#)_{p-1}([P_0,\dots,\hat{P_i},\dots,P_p])=0\quad\forall i
-        \]
-        da cui
-        \[
-            (f_\#)_{p-1}\circ\partial_p=0    
-        \]
+            \[
+                \shrp{f}([P_0,\dots,P_p])=0\implies\left(\partial'_p\circ\shrp{f}\right)([P_0,\dots,P_p])=0
+            \]
+            \[
+                (f_\#)_{p-1}(\partial_1([P_0,\dots,P_p]))=\sum_{i=0}^p(-1)^i(f_\#)_{p-1}([P_0,\hat{P_i},P_p])=
+            \]
+            da $dim\ \tau\leq p-2$ segue che, per ogni $i$, c'è almeno una ripetizione di vertici immagini di $f$, quindi
+            \[
+                (f_\#)_{p-1}([P_0,\dots,\hat{P_i},\dots,P_p])=0\quad\forall i
+            \]
+            da cui
+            \[
+                (f_\#)_{p-1}\circ\partial_p=0
+            \]
         \item[caso 3)] $dim\ \tau=dim\ \sigma-1=p-1$. Possiamo supporre che $f(P_0)=f(P_1)$ e che tutte le altre immagini siano distinte
-        \begin{itemize}
-            \item $\partial'_p\circ\shrp{f}([P_0,\dots,P_p])=\partial'_p 0=0$ (per definizione dell'omomorfismo sulle catene)
-            \item \[
-                \left(\shrp{f}\circ\partial_p\right)([P_0,\dots,P_p])=(f_\#)_{p-1}\left(\sum_{i=0}^p(-1)^i[P_0,\dots,\hat{P_i},\dots,P_p]\right)=
-            \]
-            \[
-                =\sum_{i=0}^p(-1)^i(f_\#)_{p-1}([P_0,\dots,\hat{P_i},\dots,P_p])=    
-            \]
-            tutti gli addendi sono nulli, tranne i primi due (che tolgono i vertici ripetuti tramite $f$), ottengo quindi
-            \[
-                =(-1)^0(f_\#)_{p-1}([P_1,P_2,\dots,P_p])+(-1)^1(f_\#)_{p-1}([P_0,P_2,\dots,P_p])=
-            \]
-            \[
-                =\underbrace{[f(P_0),f(P_2),\dots,f(P_p)]-[f(P_1),f(P_2),\dots,f(P_p)]}_{\text{uguali poichè }f(P_0)=f(P_1)}=0    
-            \]
-        \end{itemize}
+            \begin{itemize}
+                \item $\partial'_p\circ\shrp{f}([P_0,\dots,P_p])=\partial'_p 0=0$ (per definizione dell'omomorfismo sulle catene)
+                \item \[
+                          \left(\shrp{f}\circ\partial_p\right)([P_0,\dots,P_p])=(f_\#)_{p-1}\left(\sum_{i=0}^p(-1)^i[P_0,\dots,\hat{P_i},\dots,P_p]\right)=
+                      \]
+                      \[
+                          =\sum_{i=0}^p(-1)^i(f_\#)_{p-1}([P_0,\dots,\hat{P_i},\dots,P_p])=
+                      \]
+                      tutti gli addendi sono nulli, tranne i primi due (che tolgono i vertici ripetuti tramite $f$), ottengo quindi
+                      \[
+                          =(-1)^0(f_\#)_{p-1}([P_1,P_2,\dots,P_p])+(-1)^1(f_\#)_{p-1}([P_0,P_2,\dots,P_p])=
+                      \]
+                      \[
+                          =\underbrace{[f(P_0),f(P_2),\dots,f(P_p)]-[f(P_1),f(P_2),\dots,f(P_p)]}_{\text{uguali poichè }f(P_0)=f(P_1)}=0
+                      \]
+            \end{itemize}
     \end{enumerate}
 \end{proof}
 \begin{corollary}
     Gli omomorfismi indotti $\shrp{f}$ mandano p-cicli in p-cicli, e p-bordi in p-bordi, ossia
     \[
-        \shrp{Z_p(K)}\subseteq Z_p(L)    
+        \shrp{Z_p(K)}\subseteq Z_p(L)
     \]
     \[
-        \shrp{B_p(K)}\subseteq B_p(L)    
+        \shrp{B_p(K)}\subseteq B_p(L)
     \]
 \end{corollary}
 \begin{proof}
     Dimostriamo separatamente per p-cicli e p-bordi
     \begin{itemize}
         \item[(p-cicli)] Prendiamo un $C_p\in Z_p(K)$, ossia $\partial_pC_p=0$
-        \[
-            \left(\partial'_p\circ\shrp{f}\right)(C_p)=\left((f_\#)_{p-1}\circ\partial_p\right)(C_p)=
-        \]
-        \[
-            =(f_\#)_{p-1}(\partial_p(C_p))=(f_\#)_{p-1}(0)=0    
-        \]
-        da cui segue
-        \[
-            \shrp{Cp}\in Z_p(L)    
-        \]
+            \[
+                \left(\partial'_p\circ\shrp{f}\right)(C_p)=\left((f_\#)_{p-1}\circ\partial_p\right)(C_p)=
+            \]
+            \[
+                =(f_\#)_{p-1}(\partial_p(C_p))=(f_\#)_{p-1}(0)=0
+            \]
+            da cui segue
+            \[
+                \shrp{Cp}\in Z_p(L)
+            \]
         \item[(p-bordi)] Prendiamo un $b_p\in B_p(K)$, ossia
-        \[
-            \exists d\in C_{p+1}(K)\quad t.c.\quad \partial{p+1}d=b_p    
-        \]
-        Voglio far vedere che
-        \[
-            \exists d'\in C_{p+1}(L)\quad t.c.\quad \partial{p+1}d'=\shrp{f}(b_p) 
-        \]
-        \[
-            \left(\partial'_{p+1}\circ(f_\#)_{p+1}\right)=\left(\shrp{f}\circ\partial_{p+1}\right)(d)=
-        \]
-        \[
-            =\shrp{f}(\partial_{p+1}(d))=\shrp{f}(b_p)    
-        \]
-        da cui segue
-        \[
-            d'=(f_\#)_{p+1}(d)\implies (f_\#)_p(b_p)\in B_p(L)    
-        \]
+            \[
+                \exists d\in C_{p+1}(K)\quad t.c.\quad \partial{p+1}d=b_p
+            \]
+            Voglio far vedere che
+            \[
+                \exists d'\in C_{p+1}(L)\quad t.c.\quad \partial{p+1}d'=\shrp{f}(b_p)
+            \]
+            \[
+                \left(\partial'_{p+1}\circ(f_\#)_{p+1}\right)=\left(\shrp{f}\circ\partial_{p+1}\right)(d)=
+            \]
+            \[
+                =\shrp{f}(\partial_{p+1}(d))=\shrp{f}(b_p)
+            \]
+            da cui segue
+            \[
+                d'=(f_\#)_{p+1}(d)\implies (f_\#)_p(b_p)\in B_p(L)
+            \]
     \end{itemize}
 \end{proof}
+\newpage
+\section{Omomorfismi sui gruppi di omologia}
+\paragraph{Domanda} Possiamo estendere gli omomorfismi sulle p-catene ad omomorfismi tra i gruppi di omologia?
+\begin{definition}[Omomorfismo tra i gruppi di omologia indotto da una mappa simpliciale]
+    Sia $f:K\ra L$ una mappa simpliciale, definiamo l'omomorfismo
+    \[
+        \str{f}:H_p(K)\ra H_p(L)
+    \]
+    tale che, dati due $Z_1,Z_2\in Z_p(K)$ tali che sono rappresentati dalla stessa classe
+    \[
+        [Z_1]_{H_p(K)}=[Z_2]_{H_p(K)}
+    \]
+    allora
+    \[
+        [\shrp{f}(Z_1)]_{H_p(L)}=[\shrp{f}(Z_2)]_{H_p(L)}
+    \]
+    In questo caso, avremmo che
+    \[
+        \str{f}([Z])=[\shrp{f}(Z)]
+    \]
+\end{definition}
+\begin{proposition}
+    La funzione è ben definita, ossia è indipendente dalla scelta del rappresentante
+\end{proposition}
+\begin{proof}
+
+    \[
+        [Z_1]_{H_p(K)}=[Z_2]_{H_p(K)}\implies Z_1-Z_2\in B_p(K)
+    \]
+    ossia
+    \[
+        \exists d\in C_{p+1}(K)\quad t.c.\quad Z_1-Z_2=\partial{p+1}d
+    \]
+    Voglio far vedere che
+    \[
+        [\shrp{f}(Z_1)]_{H_p(K)}=[\shrp{f}(Z_2)]_{H_p(K)}
+    \]
+    ossia
+    \[
+        \shrp{f}(Z_1)-\shrp{f}(Z_2)\in B_p(K)
+    \]
+    cioè
+    \[
+        \exists d'\in C_{p+1}(L)\quad t.c.\quad \partial'_{p+1}d'=\shrp{f}(Z_1)-\shrp{f}(Z_2)
+    \]
+    dal corollario, intuisco che è una buona idea scegliere
+    \[
+        d'=(f_\#)_{p+1}d
+    \]
+    da cui
+    \[
+        \partial'_{p+1}d'=\partial'_{p+1}((f_\#)_{p+1}(d))=(\partial'_p\circ(f_\#)_{p+1})(d)=((f_\#)_p\circ\partial_{p+1})(d)=
+    \]
+    \[
+        =\shrp{f}(\partial_{p+1}(d))=\shrp{f}(Z_1-Z_2)=\shrp{Z_1}-\shrp{Z_2}
+    \]
+\end{proof}
+\section{Esempio}
+\begin{center}
+
+
+    \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+        %uncomment if require: \path (0,735); %set diagram left start at 0, and has height of 735
+
+        %Shape: Polygon [id:ds62210461052461] 
+        \draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (446,61.5) -- (459.5,158.5) -- (362,104.5) -- cycle ;
+        %Straight Lines [id:da6323615479571254] 
+        \draw    (146.5,105) -- (230.5,62) ;
+        \draw [shift={(230.5,62)}, rotate = 332.89] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        \draw [shift={(146.5,105)}, rotate = 332.89] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        %Straight Lines [id:da22947751291283436] 
+        \draw    (244,159) -- (146.5,105) ;
+        \draw [shift={(146.5,105)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        \draw [shift={(244,159)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        %Straight Lines [id:da019993107580255298] 
+        \draw    (230.5,62) -- (244,159) ;
+        \draw [shift={(244,159)}, rotate = 82.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        \draw [shift={(230.5,62)}, rotate = 82.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        %Straight Lines [id:da9602231519134856] 
+        \draw    (146.5,105) -- (193.5,131.03) ;
+        \draw [shift={(195.25,132)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Straight Lines [id:da06336239210143191] 
+        \draw    (244,159) -- (237.53,112.48) ;
+        \draw [shift={(237.25,110.5)}, rotate = 82.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Straight Lines [id:da9342184983311856] 
+        \draw    (146.5,105) -- (186.72,84.41) ;
+        \draw [shift={(188.5,83.5)}, rotate = 152.89] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Straight Lines [id:da8534575157718434] 
+        \draw    (362,104.5) -- (446,61.5) ;
+        \draw [shift={(446,61.5)}, rotate = 332.89] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        \draw [shift={(362,104.5)}, rotate = 332.89] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        %Straight Lines [id:da1637095784343361] 
+        \draw    (459.5,158.5) -- (362,104.5) ;
+        \draw [shift={(362,104.5)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        \draw [shift={(459.5,158.5)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        %Straight Lines [id:da030526274938948328] 
+        \draw    (446,61.5) -- (459.5,158.5) ;
+        \draw [shift={(459.5,158.5)}, rotate = 82.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        \draw [shift={(446,61.5)}, rotate = 82.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        %Straight Lines [id:da8363020383689839] 
+        \draw    (362,104.5) -- (409,130.53) ;
+        \draw [shift={(410.75,131.5)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Straight Lines [id:da3121820232703665] 
+        \draw    (459.5,158.5) -- (453.03,111.98) ;
+        \draw [shift={(452.75,110)}, rotate = 82.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Straight Lines [id:da17306729671444487] 
+        \draw    (362,104.5) -- (402.22,83.91) ;
+        \draw [shift={(404,83)}, rotate = 152.89] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Shape: Boxed Bezier Curve [id:dp5745803473335898] 
+        \draw    (434.07,96.37) .. controls (397.11,76.86) and (416,141.14) .. (435.19,107.81) ;
+        \draw [shift={(436.07,106.22)}, rotate = 117.83] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+        % Text Node
+        \draw (119.5,96.9) node [anchor=north west][inner sep=0.75pt]    {$P_{0}$};
+        % Text Node
+        \draw (246,162.4) node [anchor=north west][inner sep=0.75pt]    {$P_{1}$};
+        % Text Node
+        \draw (232.5,41.4) node [anchor=north west][inner sep=0.75pt]    {$P_{2}$};
+        % Text Node
+        \draw (335,96.4) node [anchor=north west][inner sep=0.75pt]    {$P_{0}$};
+        % Text Node
+        \draw (461.5,161.9) node [anchor=north west][inner sep=0.75pt]    {$P_{1}$};
+        % Text Node
+        \draw (448,40.9) node [anchor=north west][inner sep=0.75pt]    {$P_{2}$};
+        % Text Node
+        \draw (140,14.9) node [anchor=north west][inner sep=0.75pt]    {$K$};
+        % Text Node
+        \draw (356,15.9) node [anchor=north west][inner sep=0.75pt]    {$L$};
+
+
+    \end{tikzpicture}
+
+\end{center}
+Prendiamo come mappa simpliciale mla mappa identità $i:K\ra L$
+\[
+    P_i\longmapsto P_i
+\]
+I gruppi di omologia sono immediati dalla natura geometrica
+\[
+    H_p(K)=\begin{cases}
+        \Z\simeq\gen{P_0}                           & p=0       \\
+        \Z\simeq\gen{[P_0,P_1]+[P_1,P_2]-[P_0,P_2]} & p=1       \\
+        \{0\}                                       & p\neq 0,1
+    \end{cases}
+\]
+\[
+    H_p(L)=\begin{cases}
+        \Z\simeq\gen{P_0} & p=0     \\
+        \{0\}             & p\neq 0
+    \end{cases}
+\]
+\paragraph{$p\neq 0,1$}
+\[
+    (i_*):p:H_p(K)\ra H_p(L)
+\]
+poichè entrambi nulli, ottengo l'omomorfismo nullo
+\[
+    (i_*)_p=0
+\]
+\paragraph{$p=0$}
+\[
+    (i_*)_0:H_0(K)\ra H_0(L)
+\]
+ossia
+\[
+    (i_*)_0([P_0]_{H_0(K)})=\left[(i_\#)_0(P_0)\right]_{H_0(L)}=\left[P_0\right]_{H_0(L)}
+\]
+quindi $(i_*)_0$ è un isomorfismo
+\paragraph{$p=1$}
+\[
+    (i_*)_1:H_1(K)\ra H_1(L)
+\]
+\[
+    (i_*)_1([P_0,P_1]+[P_1,P_2]-[P_0,P_2])=[(i_\#)_1([P_0,P_1])+(i_\#)_1([P_1,P_2])-(i_\#)_1([P_0,P_2])]_=
+\]
+\[
+    =[[P_0,P_1]+[P_1,P_2]-[P_0,P_2]]_{H_1(L)}=[\partial_2[P_0,P_1,P_2]]_{H_1(L)}=0
+\]
+\section{Teoremi importanti}
+\paragraph{Osservazione}
+Sono partito da una funzione iniettiva
+\[
+    i:K\ra L
+\]
+e ho trovato una collezione di omomorfismi ${(f_*)_p}$ che contiene funzioni che non sono iniettive
+\paragraph{Domanda} Come si comportano gli omomorfismi $(f_\#)_p$ rispetto all'omologia ridotta?
+\[
+    P\in C_0(K)\implies \varepsilon(P)=1
+\]
+\[
+    (f_\#)_0(P)=f(P)\in C_0(L)\implies \varepsilon'(f(P))=1
+\]
+\begin{center}
+    \[\begin{tikzcd}
+            {C_0(K)} && \Z \\
+            \\
+            {C_0(L)} && \Z
+            \arrow["\varepsilon", from=1-1, to=1-3]
+            \arrow["{\varepsilon'}", from=3-1, to=3-3]
+            \arrow["{(f_\#)_0}"{description}, from=1-1, to=3-1]
+            \arrow["{=}"{description}, draw=none, from=1-3, to=3-3]
+        \end{tikzcd}\]
+\end{center}
+ossia
+\[
+    \varepsilon'\circ(f_\#)_0=\varepsilon
+\]
+da cui deduco che
+\[
+    (f_\#)_0(Ker\ \varepsilon)=Ker\ \varepsilon'
+\]
+Gli omomorfismi \shrp{f} si comportano quindi bene con i gruppi ridotti, possiamo quindi in modo equivalente estendere \shrp{f} a \str{f}
+\[
+    \str{f}:\tilde{H_p}(K)\ra\tilde{H_p}(L)
+\]
+\begin{theorem}
+    \begin{enumerate}
+        \item Data la mappa simpliciale
+              \[
+                  Id:K\ra K
+              \]
+              l'omomorfismo indotto
+              \[
+                  (Id_*)_p:H_p(K)\ra H_p(L)
+              \]
+              è l'omomorfismo identità
+        \item Siano $f:K\ra L$ e $g:L\ra M$ due mappe simpliciali, allora
+              \[
+                  ((g\circ f)_*)=(g_*)\circ(f_*)
+              \]
+              cioè, per ogni $p$,
+              \begin{center}
+                  \[\begin{tikzcd}
+                          & {H_p(L)} \\
+                          \\
+                          {H_p(K)} && {H_p(M)}
+                          \arrow["{(f_*)_p}", from=3-1, to=1-2]
+                          \arrow["{(g_*)_p}", from=1-2, to=3-3]
+                          \arrow["{((g\circ f)_*)_p}"', from=3-1, to=3-3]
+                      \end{tikzcd}\]
+              \end{center}
+              il diagramma commuta
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Il teorema è una diretta conseguenza della definizione di \shrp{f} e \shrp{g}
+\end{proof}
+\begin{corollary}
+    Siano $K$ e $L$ due complessi simpliciali isomorfi e sia $f:K\ra L$ la mappa simpliciale che descrive l'isomorfismo.\\
+    Allora
+    \[
+        \str{f}:H_p(K)\ra H_p(L)
+    \]
+    è un isomorfismo, e
+    \[
+        (f_*)_p^{-1}=\left((f^{-1})_*\right)_p
+    \]
+\end{corollary}
+\begin{proof} Abbiamo che
+    \begin{center}
+        \[\begin{tikzcd}
+                L & K & L & K
+                \arrow["{f^{-1}}", from=1-1, to=1-2]
+                \arrow["f"{description}, from=1-2, to=1-3]
+                \arrow["{f^{-1}}"', from=1-3, to=1-4]
+                \arrow["Id"', curve={height=24pt}, from=1-1, to=1-3]
+                \arrow["Id"', curve={height=-24pt}, from=1-2, to=1-4]
+            \end{tikzcd}\]
+    \end{center}
+    per il teorema segue che
+    \begin{center}
+        \[\begin{tikzcd}
+                {H_p(K)} && {H_p(L)} && {H_p(K)}
+                \arrow["{(f_*)_p}", from=1-1, to=1-3]
+                \arrow["{\left((f^{-1})_*\right)_p}", from=1-3, to=1-5]
+                \arrow["{\left((f\circ f^{-1})_*\right)_p}"', curve={height=30pt}, from=1-1, to=1-5]
+            \end{tikzcd}\]
+    \end{center}
+    Inoltre, $f^{-1}\circ f=Id$, da cui
+    \[
+        \left((f^{-1}\circ f)_*\right)_p=(Id_*)_p=Id
+    \]
+    quindi
+    \[
+        \left((f^{-1})_*\right)_p\circ(f_*)_p=Id
+    \]
+    Un ragionamento analogo si può fare per $(f_*)_p\circ\left((f^{-1})_*\right)_p$
+\end{proof}
+\paragraph{Risultato importante}
+\[
+    \begin{array}{ll}
+        K,L\text{ isomorfi} \\
+        (|K|,|L|\text{ omeomorfi})
+    \end{array}\implies
+    H_p(K)\simeq H_p(L)\quad \forall p
+\]
+Segue che
+\[
+    \exists p\ t.c.\ H_p(K)\neq H_p(L)\implies\begin{array}{ll}
+        K,L\text{ non sono isomorfi} \\
+        (|K|,|L|\text{ non sono omeomorfi})
+    \end{array}
+\]
+\section{Esempio}
+\begin{center}
+
+
+    \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+        %uncomment if require: \path (0,735); %set diagram left start at 0, and has height of 735
+
+        %Shape: Polygon [id:ds62210461052461] 
+        \draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (446,61.5) -- (459.5,158.5) -- (362,104.5) -- cycle ;
+        %Straight Lines [id:da6323615479571254] 
+        \draw    (146.5,105) -- (230.5,62) ;
+        \draw [shift={(230.5,62)}, rotate = 332.89] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        \draw [shift={(146.5,105)}, rotate = 332.89] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        %Straight Lines [id:da22947751291283436] 
+        \draw    (244,159) -- (146.5,105) ;
+        \draw [shift={(146.5,105)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        \draw [shift={(244,159)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        %Straight Lines [id:da019993107580255298] 
+        \draw    (230.5,62) -- (244,159) ;
+        \draw [shift={(244,159)}, rotate = 82.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        \draw [shift={(230.5,62)}, rotate = 82.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        %Straight Lines [id:da9602231519134856] 
+        \draw    (146.5,105) -- (193.5,131.03) ;
+        \draw [shift={(195.25,132)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Straight Lines [id:da06336239210143191] 
+        \draw    (244,159) -- (237.53,112.48) ;
+        \draw [shift={(237.25,110.5)}, rotate = 82.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Straight Lines [id:da9342184983311856] 
+        \draw    (146.5,105) -- (186.72,84.41) ;
+        \draw [shift={(188.5,83.5)}, rotate = 152.89] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Straight Lines [id:da8534575157718434] 
+        \draw    (362,104.5) -- (446,61.5) ;
+        \draw [shift={(446,61.5)}, rotate = 332.89] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        \draw [shift={(362,104.5)}, rotate = 332.89] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        %Straight Lines [id:da1637095784343361] 
+        \draw    (459.5,158.5) -- (362,104.5) ;
+        \draw [shift={(362,104.5)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        \draw [shift={(459.5,158.5)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        %Straight Lines [id:da030526274938948328] 
+        \draw    (446,61.5) -- (459.5,158.5) ;
+        \draw [shift={(459.5,158.5)}, rotate = 82.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        \draw [shift={(446,61.5)}, rotate = 82.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+        %Straight Lines [id:da8363020383689839] 
+        \draw    (362,104.5) -- (409,130.53) ;
+        \draw [shift={(410.75,131.5)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Straight Lines [id:da3121820232703665] 
+        \draw    (459.5,158.5) -- (453.03,111.98) ;
+        \draw [shift={(452.75,110)}, rotate = 82.08] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Straight Lines [id:da17306729671444487] 
+        \draw    (362,104.5) -- (402.22,83.91) ;
+        \draw [shift={(404,83)}, rotate = 152.89] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Shape: Boxed Bezier Curve [id:dp5745803473335898] 
+        \draw    (434.07,96.37) .. controls (397.11,76.86) and (416,141.14) .. (435.19,107.81) ;
+        \draw [shift={(436.07,106.22)}, rotate = 117.83] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+        % Text Node
+        \draw (119.5,96.9) node [anchor=north west][inner sep=0.75pt]    {$P_{0}$};
+        % Text Node
+        \draw (246,162.4) node [anchor=north west][inner sep=0.75pt]    {$P_{1}$};
+        % Text Node
+        \draw (232.5,41.4) node [anchor=north west][inner sep=0.75pt]    {$P_{2}$};
+        % Text Node
+        \draw (335,96.4) node [anchor=north west][inner sep=0.75pt]    {$P_{0}$};
+        % Text Node
+        \draw (461.5,161.9) node [anchor=north west][inner sep=0.75pt]    {$P_{1}$};
+        % Text Node
+        \draw (448,40.9) node [anchor=north west][inner sep=0.75pt]    {$P_{2}$};
+        % Text Node
+        \draw (140,14.9) node [anchor=north west][inner sep=0.75pt]    {$K$};
+        % Text Node
+        \draw (356,15.9) node [anchor=north west][inner sep=0.75pt]    {$L$};
+
+
+    \end{tikzpicture}
+
+\end{center}
+con $f:K\ra L$ definita da
+\[
+    P_0\longmapsto P_0\quad P_1\longmapsto P_1    
+\]
+\[
+    P_2\longmapsto P_1    
+\]
+\[
+    (f_\#)_0:C_0(K)=\gen{P_0,P_1,P_2}\ra C_0(L)=\gen{P_0,P_1,P_2}    
+\]
+\[
+    (f_\#)_0=\begin{blockarray}{rrrl}
+        P_0 & P_1 & P_2 & \\
+        \begin{block}{[rrr]l}
+            1 & 0 & 0\topstrut & P_0\\
+            0 & 1 & 1 & P_1\\
+            0 & 0 & 0\botstrut & P_2\\
+        \end{block}
+    \end{blockarray}    
+\]
+\[
+    (f_\#)_1:C_1(K)=\gen{[P_0,P_1],[P_0,P_2],[P_1,P_2]}\ra C_1(L)=\gen{[P_0,P_1],[P_0,P_2],[P_1,P_2]}    
+\]
+\[
+    (f_\#)_1=\begin{blockarray}{rrrl}
+        [P_0,P_1] & [P_0,P_2] & [P_1,P_2] & \\
+        \begin{block}{[rrr]l}
+            1 & 1 & 0\topstrut & [P_0,P_1]\\
+            0 & 0 & 0 & [P_0,P_2]\\
+            0 & 0 & 0\botstrut & [P_1,P_2]\\
+        \end{block}
+    \end{blockarray}     
+\]
+passiamo ora agli omomorfismi dei gruppi di omologia
+\[
+    (f_*)_0:H_0(K)=\gen{P_0}\ra H_0(L)=\gen{P_0}    
+\]
+\[
+    (f_*)_0([P_0]_{H_0(K)})=[(f_\#)_0(P_0)]_{H_0(L)}=[P_0]_{H_0(L)}    
+\]
+\[
+    (f_*)_1(\left[[P_0,P_1]+[P_1,P_2]-[P_0,P_2]\right]_{H_1(K)})=    
+\]
+\[
+    =\left[(f_\#)_1([P_0,P_1])+(f_\#)_1([P_1,P_2])-(f_\#)_1([P_0,P_2])\right]_{H_1(L)}=    
+\]
+\[
+    =\left[\cancel{[P_0,P_1]}+0\cancel{-[P_0,P_1]}\right]_{H_1(L)}=[0]_{H_1(L)}    
+\]
+\paragraph{Osservazione} Nel caso degli omomorfismi indotti da $Id$, ho che
+\[
+    (Id_\#)_1([P_0,P_1]+[P_1,P_2]-[P_0,P_2])\in B_1(L)    
+\]
+Nel caso degli omomorfismi indotti da $f$, ho che
+\[
+    (f_\#)_1([P_0,P_1]+[P_1,P_2]-[P_0,P_2])=0\text{ in }C_1(L)
+\]
+In entrambi i casi ho che
+\[
+    \str{Id}=\str{f}\quad\forall p    
+\]
+\paragraph{Domanda} Dati $K$ e $L$ due complessi simpliciali, e $f,g:K\ra L$ due mappe simpliciali, sotto quali condizioni $f$ e $g$ indicano gli stessi omomorfismi tra i gruppi di omologia simpliciale?\\
+Sotto quali condizioni $\shrp{f}(z)=\shrp{g}(z)$ in $H_p(L)$ per ogni $z\in Z_p(K)$ 
+\paragraph{Risposta (banale)} $f$ e $g$ inducono gli stessi omomorfismi tra i gruppi di omologia se
+\[
+    \forall z\in Z_p(K)\exists d'\in C_{p+1}(L)\ t.c.\ \shrp{f}(z)-\shrp{g}(z)=\partial'_{p+1}d'
+\]
+\section{Esempio}
 \end{document}
