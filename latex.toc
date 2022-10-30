@@ -191,4 +191,4 @@
 \contentsline {paragraph}{Attenzione}{102}{section*.137}%
 \contentsline {section}{\numberline {16.1}Esempio}{103}{section.16.1}%
 \contentsline {subsection}{\numberline {16.1.1}Omomorfismi indotti}{103}{subsection.16.1.1}%
-\contentsline {section}{\numberline {16.2}Cosa succede se passo ai gruppi di omologia?}{103}{section.16.2}%
+\contentsline {section}{\numberline {16.2}Cosa succede se passo ai gruppi di omologia?}{104}{section.16.2}%
