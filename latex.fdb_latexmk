@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1667127613 "/Users/andrea/Desktop/Polimi/Topologia Algebrica/Appunti/latex.tex" "latex.pdf" "latex" 1667127618
-  "/Users/andrea/Desktop/Polimi/Topologia Algebrica/Appunti/latex.tex" 1667127610 710131 781ea480ceaa0dbe304e73a9f10c6406 ""
+["pdflatex"] 1667128117 "/Users/andrea/Desktop/Polimi/Topologia Algebrica/Appunti/latex.tex" "latex.pdf" "latex" 1667128121
+  "/Users/andrea/Desktop/Polimi/Topologia Algebrica/Appunti/latex.tex" 1667128105 710127 02485666f03b162666ed644e19fa6568 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -225,10 +225,10 @@
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1650549299 2826442 4b436bdea9294d23a8f36db4a401a08d ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
   "/usr/local/texlive/texmf-local/tex/latex/local/quiver.sty" 1664014659 1606 ac24526cc82038afe47d6f803f11170f ""
-  "latex.aux" 1667127618 23070 a1c118e19ffcaa2fbe17246f16e226de "pdflatex"
-  "latex.out" 1667127618 11528 055cb628bba57caa993e3fda6b1906d1 "pdflatex"
-  "latex.tex" 1667127610 710131 781ea480ceaa0dbe304e73a9f10c6406 ""
-  "latex.toc" 1667127618 13161 ff81ea5d66ed032d51d31b92d709d380 "pdflatex"
+  "latex.aux" 1667128121 23070 a1c118e19ffcaa2fbe17246f16e226de "pdflatex"
+  "latex.out" 1667128121 11528 055cb628bba57caa993e3fda6b1906d1 "pdflatex"
+  "latex.tex" 1667128105 710127 02485666f03b162666ed644e19fa6568 ""
+  "latex.toc" 1667128121 13161 ff81ea5d66ed032d51d31b92d709d380 "pdflatex"
   (generated)
   "latex.aux"
   "latex.log"
