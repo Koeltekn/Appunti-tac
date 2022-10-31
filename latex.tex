@@ -12185,4 +12185,213 @@ Abbiamo quindi che
 \]
 Questo procedimento è però poco generalizzabile, in quanto dovremmo conoscere la natura geometrica del simplesso, cosa che non è sempre possibile
 \chapter{Chain Homotopy}
+\begin{definition}[Chain homotopy]
+    Siano $f,g:K\ra L$ due mappe simpliciali. Una collezione di omomorfismi
+    \[
+        D_p:C_p(K)\ra C_{p+1}(L)    
+    \]
+    tali che
+    \[
+        \shrp{g}-\shrp{f}=\partial_{p+1}\circ D_p+ D_{p+1}\circ \partial_p    
+    \]
+    si dice chain homotopy tra $f_\#$ e $g_\#$
+    \begin{center}
+        \[\begin{tikzcd}
+            \dots & {C_{p+1}(K)} && {C_{p}(K)} && {C_{p-1}(K)} & \dots \\
+            \\
+            \dots & {C_{p+1}(L)} && {C_{p}(L)} && {C_{p-1}(L)} & \dots
+            \arrow["{(g_\#)_p-(f_\#)_p}"{description}, from=1-4, to=3-4]
+            \arrow["{\partial_p}", from=1-4, to=1-6]
+            \arrow["{\partial'_p}"', from=3-4, to=3-6]
+            \arrow["{D_{p-1}}", from=1-6, to=3-4]
+            \arrow["{D_p}"', from=1-4, to=3-2]
+            \arrow["{\partial_{p+1}}", from=1-2, to=1-4]
+            \arrow["{\partial'_{p+1}}"', from=3-2, to=3-4]
+            \arrow[from=1-6, to=1-7]
+            \arrow[from=3-6, to=3-7]
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=3-1, to=3-2]
+            \arrow["{(g_\#)_{p-1}-(f_\#)_{p-1}}", from=1-6, to=3-6]
+            \arrow["{(g_\#)_{p+1}-(f_\#)_{p+1}}"', from=1-2, to=3-2]
+        \end{tikzcd}\]
+    \end{center}
+\end{definition}
+\begin{theorem}
+    Siano $f,g:K\ra L$ due mappe simpliciali e sia $D$ una chain homotopy tra $f_\#$ e $g_\#$.\\
+    Allora gli omomorfismi indotti sui gruppi di omologia coincidono
+    \[
+        f_*=g_*    
+    \]
+\end{theorem}
+\begin{proof}
+    Devo far vedere che
+    \[
+        \forall z\in Z_p(K)\exists d\in C_{p+1}(L)\ t.c.\ \partial_{p+1}d=\shrp{g}-\shrp{f} 
+    \]
+    Considero $d=B_p(z)$
+    \[
+        z\in Z_p(K)\implies \partial_p z=0\implies D_{p-1}(\partial_p(z))=0    
+    \]
+    Calcolo $\partial_{p+1}d$
+    \[
+        \partial_{p+1}d=\partial_{p+1}(D_p(z))=\partial_{p+1}+0=    
+    \]
+    \[
+        =\partial_{p+1}(D_p(z))+D_{p-1}(\partial_p(z))=    
+    \]
+    \[
+        \left(\partial_{p+1}\circ D_p+D_{p-1}\circ \partial_p\right)(z)=\shrp{g}-\shrp{f}    
+    \]
+\end{proof}
+\paragraph{Esempio} (Esempio del prisma)
+\begin{center}
+    \[\begin{tikzcd}
+        {\{0\}} & {C_2(K)} && {C_1(K)} && {C_0(K)} & {\{0\}} \\
+        \\
+        {\{0\}} & {C_2(L)} && {C_1(L)} && {C_0(L)} & {\{0\}}
+        \arrow["{(g_\#)_1-(f_\#)_1}"{description}, from=1-4, to=3-4]
+        \arrow["{\partial_1}", from=1-4, to=1-6]
+        \arrow["{\partial'_1}"', from=3-4, to=3-6]
+        \arrow["{D_{0}}", from=1-6, to=3-4]
+        \arrow["{D_1}"', from=1-4, to=3-2]
+        \arrow["{\partial'_{2}}"', from=3-2, to=3-4]
+        \arrow[from=1-6, to=1-7]
+        \arrow[from=3-6, to=3-7]
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=3-1, to=3-2]
+        \arrow["{(g_\#)_{0}-(f_\#)_{0}}", from=1-6, to=3-6]
+        \arrow["{(g_\#)_{2}-(f_\#)_{2}}"', from=1-2, to=3-2]
+        \arrow["{\partial_2}", from=1-2, to=1-4]
+    \end{tikzcd}\]
+\end{center}
+\[
+    D_0:C_0(K)=\gen{P_0,P_1,P_2}\ra C_1(L)\simeq \Z^{12}    
+\]
+\[
+    D_0(P_0)=d_0=[Q_0,Q_3]
+\]
+\[
+    D_0(P_1)=d_1=[Q_1,Q_4]
+\]
+\[
+    D_0(P_2)=d_2=[Q_2,Q_4]
+\]
+\[
+    D_1:C_1(K)=\gen{[P_0,P_1],[P_0,P_2],[P_0,P_2]}\ra C_2(L)\simeq \Z^6    
+\]
+\[
+    D_1([P_0,P_1])=d'_1=[Q_0,Q_1,Q_4]-[Q_0,Q_3,Q_4]    
+\]
+\[
+    D_1([P_0,P_2])=d'_2=[Q_1,Q_2,Q_5]-[Q_1,Q_4,Q_5]    
+\]
+\[
+    D_1([P_1,P_2])=d'_3=[Q_0,Q_2,Q_3]-[Q_2,Q_3,Q_5]    
+\]
+tale che
+\[
+    D_1([P_0,P_1]+[P_0,P_2]-[P_0,P_2])=(g_\#)_1-(f_\#)_1([P_0,P_1]+[P_0,P_2]-[P_0,P_2])    
+\]
+Costruire una chain homotopy in generale è un problema molto complicato, quasi impossibile senza conoscere la natura geometrica del complesso simpliciale
+\part{Approssimazioni con complessi simpliciali}
+\chapter{Mappe simpliciali contigue}
+Abbiamo un nuovo obiettivo, ossia trovare una proprietà più forte che permette di dire quando due mappe simpliciali inducono gli stessi omomorfismi tra i gruppi di omologia
+\paragraph{Idea} Ci aspettiamo che gli omomorfismi indotti tra i gruppi di omologia coincidano se le due mappe simpliciali sono "simili"
+\begin{definition}[Mappe simpliciali contigue]
+    Siano $f,g:K\ra L$ due mappe simpliciali, $f$ e $g$ si dicono contigue se per ogni p-simplesso $\sigma=[P_0,\dots,P_p]$ di $K$, i vertici che ottengo come
+    \[
+        f(P_0),\dots,f(P_P),g(P_0),\dots,g(P_p)    
+    \]
+    descrivono un simplesso $\tau$ di $L$
+\end{definition}
+\paragraph{Osservazioni}
+\begin{itemize}
+    \item $0\leq dim\ \tau\leq 2p+1$
+    \item Prendiamo $f$ e $g$ contigue, allora $\forall \sigma\in K$, $f(\sigma)$ e $g(\sigma)$ sono vicini, infatti sono facce dello stesso compleeso $\tau$ in $L$
+\end{itemize}
+\paragraph{Esempio}
+\begin{center}
+    
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,735); %set diagram left start at 0, and has height of 735
+
+%Shape: Polygon [id:ds3625927064432801] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (481,149.5) -- (383.5,95.5) -- (477.5,30) -- cycle ;
+%Straight Lines [id:da1637095784343361] 
+\draw    (225.5,149.5) -- (128,95.5) ;
+\draw [shift={(128,95.5)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+\draw [shift={(225.5,149.5)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+%Straight Lines [id:da030526274938948328] 
+\draw    (222,30) -- (225.5,149.5) ;
+\draw [shift={(225.5,149.5)}, rotate = 88.32] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+\draw [shift={(222,30)}, rotate = 88.32] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+%Straight Lines [id:da4968765297414328] 
+\draw    (222,30) -- (128,95.5) ;
+\draw [shift={(128,95.5)}, rotate = 145.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+\draw [shift={(222,30)}, rotate = 145.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+%Straight Lines [id:da6353038704109311] 
+\draw    (128,95.5) -- (173.36,63.89) ;
+\draw [shift={(175,62.75)}, rotate = 145.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da4128376863232184] 
+\draw    (128,95.5) -- (175,121.53) ;
+\draw [shift={(176.75,122.5)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da9712395939801575] 
+\draw    (225.5,149.5) -- (223.81,91.75) ;
+\draw [shift={(223.75,89.75)}, rotate = 88.32] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da6162201266522751] 
+\draw    (481,149.5) -- (383.5,95.5) ;
+\draw [shift={(383.5,95.5)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+\draw [shift={(481,149.5)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+%Straight Lines [id:da048840333847345097] 
+\draw    (477.5,30) -- (481,149.5) ;
+\draw [shift={(481,149.5)}, rotate = 88.32] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+\draw [shift={(477.5,30)}, rotate = 88.32] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+%Straight Lines [id:da7754209450247553] 
+\draw    (477.5,30) -- (383.5,95.5) ;
+\draw [shift={(383.5,95.5)}, rotate = 145.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+\draw [shift={(477.5,30)}, rotate = 145.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+%Straight Lines [id:da08810554284583061] 
+\draw    (383.5,95.5) -- (428.86,63.89) ;
+\draw [shift={(430.5,62.75)}, rotate = 145.13] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da6180479890752333] 
+\draw    (383.5,95.5) -- (430.5,121.53) ;
+\draw [shift={(432.25,122.5)}, rotate = 208.98] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da9255682696898444] 
+\draw    (481,149.5) -- (479.31,91.75) ;
+\draw [shift={(479.25,89.75)}, rotate = 88.32] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Shape: Boxed Bezier Curve [id:dp9383062658765742] 
+\draw    (435.85,79.5) .. controls (406.65,108.21) and (481.82,108.01) .. (447.91,80.83) ;
+\draw [shift={(446.85,80)}, rotate = 37.49] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+% Text Node
+\draw (100.5,85.4) node [anchor=north west][inner sep=0.75pt]    {$P_{0}$};
+% Text Node
+\draw (233,159.9) node [anchor=north west][inner sep=0.75pt]    {$P_{1}$};
+% Text Node
+\draw (213.5,7.4) node [anchor=north west][inner sep=0.75pt]    {$P_{2}$};
+% Text Node
+\draw (356,85.4) node [anchor=north west][inner sep=0.75pt]    {$P_{0}$};
+% Text Node
+\draw (488.5,159.9) node [anchor=north west][inner sep=0.75pt]    {$P_{1}$};
+% Text Node
+\draw (469,7.4) node [anchor=north west][inner sep=0.75pt]    {$P_{2}$};
+% Text Node
+\draw (343.5,13.4) node [anchor=north west][inner sep=0.75pt]    {$L$};
+% Text Node
+\draw (72,12.9) node [anchor=north west][inner sep=0.75pt]    {$K$};
+
+
+\end{tikzpicture}
+
+\end{center}
+\[
+    f:K\ra L\quad P_0\longmapsto Q_0\quad P_1\longmapsto Q_1\quad P_2\longmapsto Q_2    
+\]
+\[
+    g:K\ra L\quad P_0\longmapsto Q_0\quad P_1\longmapsto Q_1\quad P_2\longmapsto Q_1   
+\]
+$f$ e $g$ sono contigue?
 \end{document}
