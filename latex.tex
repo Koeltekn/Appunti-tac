@@ -12309,7 +12309,7 @@ Abbiamo un nuovo obiettivo, ossia trovare una proprietà più forte che permette
     \item $0\leq dim\ \tau\leq 2p+1$
     \item Prendiamo $f$ e $g$ contigue, allora $\forall \sigma\in K$, $f(\sigma)$ e $g(\sigma)$ sono vicini, infatti sono facce dello stesso compleeso $\tau$ in $L$
 \end{itemize}
-\paragraph{Esempio}
+\section{Esempio}
 \begin{center}
     
 
@@ -12394,4 +12394,223 @@ Abbiamo un nuovo obiettivo, ossia trovare una proprietà più forte che permette
     g:K\ra L\quad P_0\longmapsto Q_0\quad P_1\longmapsto Q_1\quad P_2\longmapsto Q_1   
 \]
 $f$ e $g$ sono contigue?
+\paragraph{$\mathbf{0-simplessi}$}
+\[
+    \{P_0\}\in K\longrightarrow f(P_0),g(P_0)=\{Q_0\}\in L    
+\]
+\[
+    \{P_1\}\in K\longrightarrow f(P_1),g(P_1)=\{Q_1\}\in L    
+\]
+\[
+    \{P_2\}\in K\longrightarrow f(P_2),g(P_2)=\{Q_1,Q_2\}\in L    
+\]
+\paragraph{$\mathbf{1-simplessi}$}
+\[
+    [P_0,P_1]\in K\longrightarrow f(P_0),f(P_1),g(P_0),g(P_1)=[Q_0,Q_1]\in L    
+\]
+\[
+    [P_1,P_2]\in K\longrightarrow f(P_1),f(P_2),g(P_1),g(P_2)=[Q_1,Q_2]\in L    
+\]
+\[
+    [P_0,P_2]\in K\longrightarrow f(P_0),f(P_2),g(P_0),g(P_2)=[Q_0,Q_2]\in L    
+\]
+$f$ e $g$ sono contigue
+\section{Esempio (del prisma)}
+E' immediato verificare che le due mappe non sono contigue, infatti
+\[
+    [P_0,P_1]\in K\longrightarrow f(P_0),f(P_1),g(P_0),g(P_1)=\{Q_0,Q_1,Q_3,Q_4\}\notin L
+\]
+Nonostante le mappe non siano contigue, inducono comunque gli stessi omomorfismi sui gruppi di omologia
+\begin{theorem}
+    Siano $f,g:K\ra L$ due mappe simpliciali contigue. Allora esiste una chain homotopy tra $f_\#$ e $g_\#$
+\end{theorem}
+\begin{proof}
+    Dimostrazione per induzione
+    \paragraph{Base dell'induzione} Voglio costruire un $D_0:C_0(K)\ra C_1(L)$ tale che $(g_\#)_0-(f_\#)_0=\partial_1\circ D_0+\cancel{D_{-1}\circ\partial_0}$\\
+    Considero un vertice $P$ di $K$. Per ipotesi ci sono due casi
+    \[
+        g(P)=f(P)    
+    \]
+    \[
+        g(P)\neq f(P)\quad[f(P),g(P)]\in L    
+    \]
+    Se sono nel primo caso, allora $D_0(P)=0$ poichè $(g_\#)_0-(f_\#)_0=0$\\
+    Se sono nel secondo caso, allora $D_0(P)=[f(P),g(P)]$ poichè
+    \[
+        \partial_1\circ D_0=g(P)-f(P)=\left((g_\#)_0-(f_\#)_0\right)(P)   
+    \]
+    \paragraph{Passo induttivo}
+    Supponiamo che siamo riusciti a determinare $D_q:C_q(K)\ra C_{q+1}(L)$ per $0\leq q\leq p-1$\\
+    Voglio costruire $D_p:C_p(K)\ra C_{p+1}(L)$ tale che
+    \[
+        (g_\#)_p-(f_\#)_p=\partial_{p+1}\circ D_p+D_{p-1}\circ\partial_p    
+    \]
+    Sia $\sigma=[P_0,\dots,P_p]$ un p-simplesso di $K$. Indichiamo con $L(\sigma)$ il sottocomplesso di $L$ corrispondente al simplesso generato da $f(P_0),\dots,f(P_p),g(P_0),\dots,g(P_p)$ (che per contiguità esiste sempre)\\
+    Risultano immediate le seguenti proprietà
+    \begin{itemize}
+        \item $L(\sigma)\neq\emptyset$
+        \item $\tilde{H_i}(L(\sigma))=\{0\}$
+        \item $\shrp{f}(sigma)$ e $\shrp{g}(\sigma)$ valgono $0$, oppure sono funzioni caratteristiche di simplessi che compaiono tra le facce di $L(\sigma)$
+    \end{itemize}
+    Voglio determinare $D_p(\sigma)$ in modo che
+    \[
+        (\partial_{p+1}\circ D_p)(\sigma)=(\shrp{g}-\shrp{f})(\sigma)-(D_{p-1}\circ\partial_p)(\sigma)  
+    \]
+    Per induzione
+    \[
+        =(\shrp{g}-\shrp{f})(\sigma)-(D_{p-1}\circ\partial_p)(\sigma)  
+    \]
+    è univocamente determinata.\\
+    Calcoliamo il bordo $\partial c$
+    \[
+        (\partial_p\circ\shrp{g})(\sigma)-(\partial_p\circ\shrp{f})(\sigma)-(\partial_p\circ D_{p-1}\circ\partial_p)(\sigma)=
+    \]
+    \[
+        =(\partial_p\circ\shrp{g})(\sigma)-(\partial_p\circ\shrp{f})(\sigma)-(\partial_p\circ D_{p-1})\circ(\partial_p)(sigma)=(*)
+    \]
+    Per ipotesi induttiva
+    \[
+        \partial_p\circ D_{p-1}=(g_\#)_{p-1}-(f_\#)_{p-1}-D_{p-2}\circ\partial_{p-1} 
+    \]
+    da cui otteniamo
+    \[
+        (*)=(\partial_p\circ(g_\#)_p)(\sigma)-(\partial_p\circ(f_\#)_p)(\sigma)-((g_\#)_{p-1}\circ\partial_p)+((f_\#)_{p-1}\circ\partial_p)(\sigma)
+    \]
+    \[
+        \cancelto{0}{-(D_{p-2}\circ \partial_{p-1}\partial_p)(\sigma)}=   
+    \]
+    \[
+        =(\partial_p\circ\shrp{g})(\sigma)-((g_\#)_{p-1}\circ\partial_p)(\sigma)    
+    \]
+    \[
+        -\left[(\partial_p\circ\shrp{f})(\sigma)-((f_\#)_{p-1}\circ\partial_p)(\sigma)\right]=0-0=0    
+    \]
+    da cui
+    \[
+        \partial c=0\Longleftrightarrow c\in Z_p(L(\sigma))\subseteq Z_p(L)    
+    \]
+    Inoltre
+    \[
+        H_p(L(\sigma))=\{0\}=\faktor{Z_p(L(\sigma))}{B_p(L(\sigma))}    
+    \]
+    Dato che $\tilde{H_p}(L(\sigma))=\{0\}$, abbiamo che
+    \[
+        Z_p(L(\sigma))=B_p(L(\sigma))    
+    \]
+    Quindi
+    \[
+        \exists d\in C_{p+1}(L(\sigma))\subset C_{p+1}(L)\quad t.c.\quad c=\partial_{p+1}d    
+    \]
+    \[
+        (\partial_{p+1}\circ D_p)(\sigma)=c=\partial_{p+1}d\implies D_p(\sigma)=d    
+    \]
+\end{proof}
+\paragraph{Osservazione} Il passaggio chiave è l'esistenza di un sottocomplesso $L(\sigma)$ aciclico, che contenga i vertici che identifico con
+\[
+    f(P_0),\dots,f(P_p),g(P_0),\dots,g(P_p)    
+\]
+La contiguità è più forte che garantire che $L(\sigma)$ sia aciclico.\\
+Ma se pensiamo all'esempio del prisma a base triangolare, se considero
+\[
+    L([P_0,P_1])=\{[Q_0,Q_1,Q_3],[Q_1,Q_3,Q_4]\}\cup\{\text{facce}\}    
+\]
+è aciclico, quindi
+\[
+    Z_1(L([P_0,P_1]))=B_1(L([P_0,P_1]))    
+\]
+\chapter{Funzioni continue qualsiasi}
+In generale, mi posso trovare a studiare funzioni continue $f:X\ra Y$ tra spazi topologici $X\subseteq\R^n$ $Y\subseteq\R^m$ con obiettivi computazionali non banali.\\
+Una possibilità è quella di considerare due complessi simpliciali $K$ e $L$ tali che
+\[
+    |K|\subset\R^n\quad L\subset\R^m
+\]
+Ad esempio
+\begin{center}
+    
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,735); %set diagram left start at 0, and has height of 735
+
+%Shape: Polygon [id:ds2626602337732131] 
+\draw   (371.5,58) -- (390.5,62.5) -- (410,82) -- (414.88,101.38) -- (409.5,123) -- (391.5,139.5) -- (371.5,144.75) -- (351.5,140) -- (335,124.75) -- (328.13,101.38) -- (333.5,80.75) -- (349.5,64.25) -- cycle ;
+%Straight Lines [id:da32714644293663175] 
+\draw    (140,171) -- (140,31.75) ;
+\draw [shift={(140,29.75)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Shape: Boxed Line [id:dp2632510770906993] 
+\draw    (69.38,99.88) -- (208.63,99.88) ;
+\draw [shift={(210.63,99.88)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Shape: Circle [id:dp5931492243245413] 
+\draw   (96.63,100.38) .. controls (96.63,76.42) and (116.04,57) .. (140,57) .. controls (163.96,57) and (183.38,76.42) .. (183.38,100.38) .. controls (183.38,124.33) and (163.96,143.75) .. (140,143.75) .. controls (116.04,143.75) and (96.63,124.33) .. (96.63,100.38) -- cycle ;
+%Straight Lines [id:da353234324383608] 
+\draw    (371.5,172) -- (371.5,32.75) ;
+\draw [shift={(371.5,30.75)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Shape: Boxed Line [id:dp306445924214406] 
+\draw    (300.88,100.88) -- (440.13,100.88) ;
+\draw [shift={(442.13,100.88)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da4439943191009972] 
+\draw    (333.5,80.75) -- (371.5,101.38) ;
+%Straight Lines [id:da3622140751869001] 
+\draw    (371.5,101.38) -- (409.5,123) ;
+%Straight Lines [id:da44438408064971635] 
+\draw    (349.5,64.25) -- (371.5,101.38) ;
+%Straight Lines [id:da5661658953728566] 
+\draw    (371.5,101.38) -- (391.5,139.5) ;
+%Straight Lines [id:da7370115000329436] 
+\draw    (390.5,62.5) -- (371.5,101.38) ;
+%Straight Lines [id:da7674882100427609] 
+\draw    (410,82) -- (371.5,101.38) ;
+%Straight Lines [id:da08138200405890528] 
+\draw    (335,124.75) -- (371.5,101.38) ;
+%Straight Lines [id:da9053798560761808] 
+\draw    (371.5,101.38) -- (351.5,140) ;
+
+% Text Node
+\draw (90.5,132.4) node [anchor=north west][inner sep=0.75pt]    {$X$};
+% Text Node
+\draw (187,33.4) node [anchor=north west][inner sep=0.75pt]    {$\mathbb{R}^{2}$};
+% Text Node
+\draw (319.5,133.9) node [anchor=north west][inner sep=0.75pt]    {$K$};
+% Text Node
+\draw (194.5,170.9) node [anchor=north west][inner sep=0.75pt]    {$|K|\ approssima\ X$};
+
+
+\end{tikzpicture}
+
+\end{center}
+Osservo che in generale $f$ non sarà una mappa simpliciale tra $K$ e $L$, infatti non posso garantire che mandi simplessi in simplessi
+\paragraph{Obiettivo} Studiare funzioni continue $f:|K|\ra |L|$ che non corrispondono a mappe simpliciali
+\begin{definition}[Condizione star]
+    Sia $h:|K|\ra |L|$ una funzione continua, diciamo che $h$ soddisfa la condizione star (rispetto alla struttura combinatoriale di $K$ e $L$) se per ogni vertice $P\in\pskel{K}{0}$ c'è un vertice $Q\in\pskel{L}{0}$ tale che
+    \[
+        h(St(P,K))\subset St(Q,L)    
+    \]
+\end{definition}
+\newpage
+\begin{proposition}
+    Sia $h:|K|\ra |L|$ una funzione continua che soddisfa la condizione star e sia $f:\pskel{K}{0}\ra\pskel{L}{0}$ una funzione tale che
+    \[
+        \forall P\in\pskel{K}{0}\quad h(St(P,K))\subset St(f(P),L)    
+    \]
+    ($f$ esiste per forza poichè $h$ soddisfa la condizione star)
+    Allora:
+    \begin{itemize}
+        \item Dato $\sigma\in K$, sia $x\in Int(\sigma)$ e sia $\tau\in L$ tal che $h(x)\in Int(\tau)$, allora la funzione $f$ manda vertici di $\sigma$ in vertici di $\tau$
+        \item $f$ si può estendere ad una mappa simpliciale $f:K\ra L$
+        \item Sia $g:K\ra L$ un'altra mappa simpliciale tale che
+        \[
+            h(St(P,K))\subset St(g(P),L)\quad\forall P\in\pskel{K}{0}
+        \]
+        Allora $f$ e $g$ sono contigue
+    \end{itemize}
+\end{proposition}
+\paragraph{Morale} Una volta fissata $h$, l'effetto di una mappa simpliciale $f:K\ra L$  tale che $h(St(P,K))\subset St(f(P),K)$ sui gruppi di omologia è univocamente determinata
+\begin{definition}[Approssimazione simpliciale]
+    Sia $h:|K|\ra|L|$ una funzione continua che soddisfa la condizione star. Una mappa simpliciale $f:K\ra L$ tale che 
+    \[
+        \forall P\in\pskel{K}{0}\quad h(St(P,K))\subset St(f(P),L)    
+    \]
+    si dice approssimazione simpliciale di $h$
+\end{definition}
 \end{document}
